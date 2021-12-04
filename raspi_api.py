@@ -1,5 +1,6 @@
 from enum import Enum
 from fastapi import FastAPI
+import capteurs
 
 app = FastAPI(host='0,0,0,0',port=8001)
 
@@ -18,12 +19,12 @@ async def get_info():
 
 @app.get("/api/capteurs")
 async def get_capteurs():
-    # create capteur reading function...
-    capteurs = {"temp": 22.05,
+    temp = capteurs.read_temp()
+    capt = {"temp": temp,
                 "hum": 78,
                 "lux": 122,
                 "light": "dark",
                 }
-    return capteurs
+    return capt
 
 
